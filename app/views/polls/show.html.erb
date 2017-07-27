@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @poll.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @poll.description %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @poll.status %>
+</p>
+
+<p>
+  <strong>Started at:</strong>
+  <%= @poll.started_at %>
+</p>
+
+<p>
+  <strong>Concluded at:</strong>
+  <%= @poll.concluded_at %>
+</p>
+
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>

@@ -1,0 +1,42 @@
+<%= form_with(model: poll, local: true) do |form| %>
+  <% if poll.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
+
+      <ul>
+      <% poll.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :poll_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :poll_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :poll_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :started_at %>
+    <%= form.datetime_select :started_at, id: :poll_started_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :concluded_at %>
+    <%= form.datetime_select :concluded_at, id: :poll_concluded_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
