@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727163125) do
+ActiveRecord::Schema.define(version: 20170727164454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 20170727163125) do
     t.index ["name"], name: "index_voters_on_name", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "proposal_id"
+    t.bigint "voter_id"
+    t.integer "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_id", "voter_id"], name: "index_votes_on_proposal_id_and_voter_id", unique: true
+    t.index ["proposal_id"], name: "index_votes_on_proposal_id"
+    t.index ["voter_id"], name: "index_votes_on_voter_id"
+  end
+
   add_foreign_key "proposals", "items"
   add_foreign_key "proposals", "polls"
+  add_foreign_key "votes", "proposals"
+  add_foreign_key "votes", "voters"
 end

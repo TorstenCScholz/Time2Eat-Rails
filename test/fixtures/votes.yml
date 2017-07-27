@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proposal: one
+  voter: one
+  weight: 1
+
+two:
+  proposal: two
+  voter: two
+  weight: 1
