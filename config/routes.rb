@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :voters
   resources :proposals
   resources :polls
   resources :items
