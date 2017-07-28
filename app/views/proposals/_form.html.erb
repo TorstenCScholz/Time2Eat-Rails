@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :poll_id %>
-    <%= form.text_field :poll_id, id: :proposal_poll_id %>
+    <%= form.collection_select(:poll_id, Poll.order(:name), :id, :name, :prompt => 'Bitte wählen') %>
   </div>
 
   <div class="field">
     <%= form.label :item_id %>
-    <%= form.text_field :item_id, id: :proposal_item_id %>
+    <%= form.collection_select(:item_id, Item.order(:name), :id, :name, :prompt => 'Bitte wählen') %>
   </div>
 
   <div class="actions">
