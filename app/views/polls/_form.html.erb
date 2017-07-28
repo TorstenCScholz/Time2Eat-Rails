@@ -1,42 +1,54 @@
-<%= form_with(model: poll, local: true) do |form| %>
-  <% if poll.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
+<div class="row">
+  <%= form_with(model: poll, local: true, class: "col s12") do |form| %>
+    <% if poll.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(poll.errors.count, "error") %> prohibited this poll from being saved:</h2>
 
-      <ul>
-      <% poll.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% poll.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= form.text_field :name, id: :poll_name %>
+        <%= form.label :name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= form.text_area :description, id: :poll_description, class: "materialize-textarea" %>
+        <%= form.label :description %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s6">
+        <%= form.text_field :status, id: :poll_status %>
+        <%= form.label :status %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= form.text_field :started_at, id: :poll_started_at, class: "datepicker" %>
+        <%= form.label :started_at %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <%= form.text_field :concluded_at, id: :poll_concluded_at, class: "datepicker" %>
+        <%= form.label :concluded_at %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Speichern", :class => "waves-effect waves-light btn" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :poll_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :poll_description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :poll_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :started_at %>
-    <%= form.datetime_select :started_at, id: :poll_started_at %>
-  </div>
-
-  <div class="field">
-    <%= form.label :concluded_at %>
-    <%= form.datetime_select :concluded_at, id: :poll_concluded_at %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
