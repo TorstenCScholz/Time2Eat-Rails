@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :voter_name %>
+  <div class="row">
+    <div class="input-field col s6">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :voter_name %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Speichern', :class => "waves-effect waves-light btn" %>
   </div>
 <% end %>
