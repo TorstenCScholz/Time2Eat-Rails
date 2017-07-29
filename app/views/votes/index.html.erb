@@ -16,7 +16,7 @@
     <% @votes.each do |vote| %>
       <tr>
         <td><%= vote.proposal %></td>
-        <td><%= vote.voter %></td>
+        <td><%= vote.voter.name %></td>
         <td><%= vote.weight %></td>
         <td><%= link_to 'Show', vote %></td>
         <td><%= link_to 'Edit', edit_vote_path(vote) %></td>

@@ -24,6 +24,8 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
+    # TODO: If combination voter poll item is already present -> error (user should edit)
+
     poll_id = vote_params[:poll_id].to_i
     item_id = vote_params[:item_id].to_i
 
@@ -59,6 +61,8 @@ class VotesController < ApplicationController
   # PATCH/PUT /votes/1
   # PATCH/PUT /votes/1.json
   def update
+    # TODO: Copy create code and adjust?
+
     respond_to do |format|
       if @vote.update(vote_params)
         format.html { redirect_to @vote, notice: 'Vote was successfully updated.' }
@@ -84,6 +88,11 @@ class VotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
       @vote = Vote.find(params[:id])
+
+      proposal = Proposal.find(@vote.proposal_id)
+
+      @poll_id = proposal.poll_id
+      @item_id = proposal.item_id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

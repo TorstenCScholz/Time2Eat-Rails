@@ -11,18 +11,6 @@
     </div>
   <% end %>
 
-<!--
-  <div class="field">
-    <%= form.label :proposal_id %>
-    <%= form.text_field :proposal_id, id: :vote_proposal_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :voter_id %>
-    <%= form.text_field :voter_id, id: :vote_voter_id %>
-  </div>
--->
-
   <div class="field">
     <%= form.label :voter_id %>
     <%= form.collection_select(:voter_id, Voter.order(:name), :id, :name, :prompt => 'Bitte wählen') %>
@@ -46,4 +34,7 @@
   <div class="actions">
     <%= form.submit 'Speichern', :class => 'waves-effect waves-light btn' %>
   </div>
+
+  Poll Id: <%= @poll_id %><br />
+  Item Id: <%= @item_id %>
 <% end %>

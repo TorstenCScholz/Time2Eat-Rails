@@ -14,8 +14,8 @@
   <tbody>
     <% @proposals.each do |proposal| %>
       <tr>
-        <td><%= proposal.poll %></td>
-        <td><%= proposal.item %></td>
+        <td><%= proposal.poll.name %></td>
+        <td><%= proposal.item.name %></td>
         <td><%= link_to 'Show', proposal %></td>
         <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
         <td><%= link_to 'Destroy', proposal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
