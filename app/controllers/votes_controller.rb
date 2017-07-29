@@ -24,7 +24,26 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
-    @vote = Vote.new(vote_params)
+    poll_id = vote_params[:poll_id].to_i
+    item_id = vote_params[:item_id].to_i
+
+    proposal = Proposal.find_by(poll_id: poll_id, item_id: item_id)
+  
+    if proposal.nil?
+      puts "Cannot find proposal with poll_id #{poll_id} and item_id #{item_id}. Creating one."
+
+      proposal = Proposal.new({
+        poll_id: poll_id,
+        item_id: item_id
+      })
+      proposal.save
+    end
+
+    @vote = Vote.new({
+      voter_id: vote_params[:voter_id],
+      proposal_id: proposal.id,
+      weight: vote_params[:weight]
+    })
 
     respond_to do |format|
       if @vote.save
@@ -69,6 +88,6 @@ class VotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
-      params.require(:vote).permit(:proposal_id, :voter_id, :weight)
+      params.require(:vote).permit(:poll_id, :item_id, :voter_id, :weight)
     end
 end

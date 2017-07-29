@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+<!--
   <div class="field">
     <%= form.label :proposal_id %>
     <%= form.text_field :proposal_id, id: :vote_proposal_id %>
@@ -20,6 +21,22 @@
     <%= form.label :voter_id %>
     <%= form.text_field :voter_id, id: :vote_voter_id %>
   </div>
+-->
+
+  <div class="field">
+    <%= form.label :voter_id %>
+    <%= form.collection_select(:voter_id, Voter.order(:name), :id, :name, :prompt => 'Bitte wählen') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :poll_id %>
+    <%= form.collection_select(:poll_id, Poll.order(:name), :id, :name, :prompt => 'Bitte wählen') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.collection_select(:item_id, Item.order(:name), :id, :name, :prompt => 'Bitte wählen') %>
+  </div>
 
   <div class="field">
     <%= form.label :weight %>
@@ -27,6 +44,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Speichern', :class => 'waves-effect waves-light btn' %>
   </div>
 <% end %>

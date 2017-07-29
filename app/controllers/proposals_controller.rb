@@ -1,7 +1,5 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show, :edit, :update, :destroy]
-  before_action :set_polls
-  before_action :set_items
 
   # GET /proposals
   # GET /proposals.json
@@ -72,13 +70,5 @@ class ProposalsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
       params.require(:proposal).permit(:poll_id, :item_id)
-    end
-
-    def set_polls
-      @polls = Poll.order(:name)
-    end
-
-    def set_items
-      @items = Item.order(:name)
     end
 end
