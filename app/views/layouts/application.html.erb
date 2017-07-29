@@ -9,6 +9,36 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Time2Eat</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><%= link_to 'Polls', polls_path %></li>
+            <li><%= link_to 'Items', items_path %></li>
+            <li><%= link_to 'Proposals', proposals_path %></li>
+            <li><%= link_to 'Votes', votes_path %></li>
+            <li><%= link_to 'Voters', voters_path %></li>
+          </ul>
+        </div>
+      </nav>
+
+      <%= yield %>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        $('select').material_select();
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+        });
+    });
+    </script>
   </body>
 </html>
