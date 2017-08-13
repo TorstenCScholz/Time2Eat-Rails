@@ -1,4 +1,11 @@
 class Vote < ApplicationRecord
+  # Possible preferences:
+  #  :very_positive
+  #  :positive
+  #  :neutral
+  #  :negative
+  #  :very_negative
+
   belongs_to :proposal
   belongs_to :voter
 
