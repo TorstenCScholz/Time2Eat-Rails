@@ -16,10 +16,12 @@
 
 @import "materialize/components/color";
 
-// color("#db1a6c", "#e63178") !default;
-$primary-color: color("purple", "accent-3") !default;
-// color("#13c413", "#18d618") !default;
-$secondary-color: color("light-green", "accent-3") !default;
+$primary-color: color("indigo", "darken-1") !default;
+$secondary-color: color("orange", "darken-3") !default;
 
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
+
+a {
+  color: $primary-color
+}
