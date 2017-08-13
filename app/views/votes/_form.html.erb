@@ -27,8 +27,20 @@
   </div>
 
   <div class="field">
-    <%= form.label :weight %>
-    <%= form.number_field :weight, id: :vote_weight %>
+    <%= form.radio_button(:preference, :very_positive, id: :preference_very_positive) %>
+    <label for="preference_very_positive"><%= translate_preference(:very_positive) %></label>
+    
+    <%= form.radio_button(:preference, :positive, id: :preference_positive) %>
+    <label for="preference_positive"><%= translate_preference(:positive) %></label>
+    
+    <%= form.radio_button(:preference, :neutral, id: :preference_neutral, checked: true) %>
+    <label for="preference_neutral"><%= translate_preference(:neutral) %></label>
+    
+    <%= form.radio_button(:preference, :negative, id: :preference_negative) %>
+    <label for="preference_negative"><%= translate_preference(:negative) %></label>
+    
+    <%= form.radio_button(:preference, :very_negative, id: :preference_very_negative) %>
+    <label for="preference_very_negative"><%= translate_preference(:very_negative) %></label>
   </div>
 
   <div class="actions">

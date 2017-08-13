@@ -41,10 +41,12 @@ class VotesController < ApplicationController
       proposal.save
     end
 
+    puts "%%%%%%% #{vote_params.inspect}"
+
     @vote = Vote.new({
       voter_id: vote_params[:voter_id],
       proposal_id: proposal.id,
-      weight: vote_params[:weight]
+      preference: vote_params[:preference]
     })
 
     respond_to do |format|
@@ -97,6 +99,6 @@ class VotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vote_params
-      params.require(:vote).permit(:poll_id, :item_id, :voter_id, :weight)
+      params.require(:vote).permit(:poll_id, :item_id, :voter_id, :preference)
     end
 end

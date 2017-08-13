@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Votes</h1>
+<h1>Abstimmungen</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Poll</th>
+      <th>Umfrage</th>
       <th>Item</th>
-      <th>Voter</th>
-      <th>Weight</th>
+      <th>Wähler</th>
+      <th>Präferenz</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,10 +19,10 @@
         <td><%= get_poll_for_proposal(vote.proposal).name %></td>
         <td><%= get_item_for_proposal(vote.proposal).name %></td>
         <td><%= vote.voter.name %></td>
-        <td><%= vote.weight %></td>
-        <td><%= link_to 'Show', vote %></td>
-        <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
-        <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= translate_preference vote.preference %></td>
+        <td><%= link_to 'Anzeigen', vote %></td>
+        <td><%= link_to 'Editieren', edit_vote_path(vote) %></td>
+        <td><%= link_to 'Löschen', vote, method: :delete, data: { confirm: 'Bist du sicher?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Vote', new_vote_path %>
+<%= link_to 'Neue Abstimmung', new_vote_path %>
