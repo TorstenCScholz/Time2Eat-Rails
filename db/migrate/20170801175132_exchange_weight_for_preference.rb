@@ -14,16 +14,20 @@ class ExchangeWeightForPreference < ActiveRecord::Migration[5.1]
     vote_weights.each do |id, weight|
       updated_vote = Vote.find(id)
 
-      if weight > 1
-        updated_vote.preference = :very_positive
-      elsif weight == 1
-        updated_vote.preference = :positive
-      elsif weight == 0
+      if weight.nil?
         updated_vote.preference = :neutral
-      elsif weight == -1
-        updated_vote.preference = :negative
-      elsif
-        updated_vote.preference = :very_negative
+      else
+        if weight > 1
+          updated_vote.preference = :very_positive
+        elsif weight == 1
+          updated_vote.preference = :positive
+        elsif weight == 0
+          updated_vote.preference = :neutral
+        elsif weight == -1
+          updated_vote.preference = :negative
+        elsif
+          updated_vote.preference = :very_negative
+        end
       end
 
       updated_vote.save!
