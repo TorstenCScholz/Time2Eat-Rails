@@ -13,7 +13,14 @@
       <nav>
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">Time2Eat</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <a href="#" data-activates="mobile-nav" class="right button-collapse"><i class="material-icons">menu</i></a>
+          <ul id="nav" class="right hide-on-med-and-down">
+            <li><%= link_to 'Umfragen', polls_path %></li>
+            <li><%= link_to 'Items', items_path %></li>
+            <li><%= link_to 'Abstimmungen', votes_path %></li>
+            <li><%= link_to 'Wähler', voters_path %></li>
+          </ul>
+          <ul id="mobile-nav" class="right side-nav">
             <li><%= link_to 'Umfragen', polls_path %></li>
             <li><%= link_to 'Items', items_path %></li>
             <li><%= link_to 'Abstimmungen', votes_path %></li>
@@ -43,6 +50,15 @@
             clear: 'Leeren',
             close: 'Ok',
             closeOnSelect: false // Close upon selecting a date,
+        });
+
+        $(".button-collapse").sideNav({
+          menuWidth: 300, // Default is 300
+          edge: 'right', // Choose the horizontal origin
+          closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+          draggable: true, // Choose whether you can drag to open on touch screens,
+          onOpen: function(el) {  }, // A function to be called when sideNav is opened
+          onClose: function(el) {  }, // A function to be called when sideNav is closed
         });
     });
     </script>
