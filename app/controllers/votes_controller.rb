@@ -41,8 +41,6 @@ class VotesController < ApplicationController
       proposal.save
     end
 
-    puts "%%%%%%% #{vote_params.inspect}"
-
     @vote = Vote.new({
       voter_id: vote_params[:voter_id],
       proposal_id: proposal.id,
