@@ -22,8 +22,31 @@ module VotesHelper
       'Eher nicht'
     when :very_negative
       'Auf keinen Fall'
-    else
+    when :unknown
       'Unbekannter Wert'
+    else
+      ''
+    end
+  end
+
+  def colorize_preference(preference)
+    pref = preference.to_sym
+
+    case pref
+    when :very_positive
+      '#5f5'
+    when :positive
+      '#bfb'
+    when :neutral
+      '#eee'
+    when :negative
+      '#fbb'
+    when :very_negative
+      '#f55'
+    when :unknown
+      '#fff'
+    else
+      '#fff'
     end
   end
 end

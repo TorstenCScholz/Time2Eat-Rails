@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :set_poll, only: [:show, :edit, :update, :destroy, :results]
 
   # GET /polls
   # GET /polls.json
@@ -19,6 +19,14 @@ class PollsController < ApplicationController
 
   # GET /polls/1/edit
   def edit
+  end
+
+  # GET /polls/1/results
+  def results
+    @voters = Voter.all
+    item_ids = Proposal.where(poll_id: @poll.id).pluck(:item_id)
+    @items = Item.where(id: item_ids)
+    @votes = get_votes_for_poll(@poll)
   end
 
   # POST /polls
@@ -70,5 +78,13 @@ class PollsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
       params.require(:poll).permit(:name, :description, :status, :started_at, :concluded_at)
+    end
+
+
+    # TODO: Should prob. be inside a service / helper of some kind?
+    def get_votes_for_poll(poll)
+      proposal_ids = Proposal.where(poll_id: poll.id).pluck(:id)
+
+      Vote.where(proposal_id: proposal_ids)
     end
 end

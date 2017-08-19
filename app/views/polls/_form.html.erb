@@ -22,11 +22,11 @@
     <div class="row">
       <div class="input-field col s6">
         <%= form.text_area :description, id: :poll_description, class: "materialize-textarea" %>
-        <%= form.label :description %>
+        <%= form.label :description, 'Beschreibung' %>
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="input-field col s6">
         <%= form.text_field :status, id: :poll_status %>
         <%= form.label :status %>
@@ -45,7 +45,7 @@
         <%= form.text_field :concluded_at, id: :poll_concluded_at, class: "datepicker" %>
         <%= form.label :concluded_at %>
       </div>
-    </div>
+    </div> -->
 
     <div class="actions">
       <%= form.submit 'Speichern', :class => 'waves-effect waves-light btn' %>

@@ -6,11 +6,11 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Beschreibung:</strong>
   <%= @poll.description %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Status:</strong>
   <%= @poll.status %>
 </p>
@@ -23,7 +23,7 @@
 <p>
   <strong>Concluded at:</strong>
   <%= @poll.concluded_at %>
-</p>
+</p> -->
 
-<%= link_to 'Edit', edit_poll_path(@poll) %> |
-<%= link_to 'Back', polls_path %>
+<%= link_to 'Ändern', edit_poll_path(@poll) %> |
+<%= link_to 'Zurück', polls_path %>

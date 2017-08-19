@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ergebnisse zur Umfrage '<%= @poll.name %>'</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wähler</th>
+      <% @items.each do |item| %>
+        <th><%= item.name %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @voters.each do |voter| %>
+    <tr>
+      <td><%= voter.name %></td>
+      <% @items.each do |item| %>
+        <% preference = get_vote_preference_for_poll_and_voter_and_item(@poll, voter, item)
+           translated_preference = translate_preference preference
+           colorized_preference = colorize_preference preference %>
+        <td style="background: <%= colorized_preference %>"><%= translate_preference(get_vote_preference_for_poll_and_voter_and_item(@poll, voter, item)) %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+<table>
+
+<%= link_to 'Zurück', polls_path %>
