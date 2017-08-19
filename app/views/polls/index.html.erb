@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @polls.each do |poll| %>
+    <% @polls.order(:name).reverse_order.each do |poll| %>
       <tr>
         <td><%= poll.name %></td>
         <td><%= poll.description %></td>
