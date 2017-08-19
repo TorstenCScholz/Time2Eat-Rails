@@ -23,10 +23,10 @@ class PollsController < ApplicationController
 
   # GET /polls/1/results
   def results
-    @voters = Voter.all
-    item_ids = Proposal.where(poll_id: @poll.id).pluck(:item_id)
-    @items = Item.where(id: item_ids)
+    proposals = Proposal.where(poll_id: @poll.id)
+    @items = Item.where(id: proposals.pluck(:item_id))
     @votes = get_votes_for_poll(@poll)
+    @voters = Voter.where(id: @votes.pluck(:voter_id))
   end
 
   # POST /polls
