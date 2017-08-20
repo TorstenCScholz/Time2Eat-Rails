@@ -2,10 +2,16 @@
 
 <h1>Abstimmungen</h1>
 
-<!-- TODO: just temp., remove when enough persons know where to find results -->
-<div style="padding: 10px; background: red; color: black">
-<h5>Umfrageergebnisse sind unter dem Punkt 'Umfragen' einzusehen!</h5>
-<p>Abgestimmt wird aber zunächst weiterhin hier.</p>
+<div class="row">
+  <div class="col s12 m6 offset-m3">
+    <div class="card amber">
+      <div class="card-content">
+        <span class="card-title">Hinweis</span>
+        <p>Umfrageergebnisse sind unter dem Punkt '<%= link_to 'Umfragen', polls_path %>' einzusehen!</p>
+        <p>Abgestimmt wird aber zunächst weiterhin hier.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <table>
