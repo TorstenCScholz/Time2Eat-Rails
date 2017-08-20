@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :edit, :update, :destroy, :results]
+  before_action :set_poll, only: [:show, :edit, :update, :destroy, :results, :votes, :votes!]
 
   # GET /polls
   # GET /polls.json
@@ -27,6 +27,78 @@ class PollsController < ApplicationController
     @items = Item.where(id: proposals.pluck(:item_id))
     @votes = get_votes_for_poll(@poll)
     @voters = Voter.where(id: @votes.pluck(:voter_id))
+  end
+
+  # GET /polls/1/vote
+  def votes
+    @items = Item.all
+
+    # TODO: Fill model with data
+  end
+
+  # POST /polls/1/votes
+  def votes!
+    if params[:voter_id].nil? or params[:voter_id] == ''
+      puts "VOTER EMPTY LOL"
+
+      respond_to do |format|
+        format.html { redirect_to votes_polls_path, notice: 'Wähler auswählen!' }
+        format.json { render status: :unprocessable_entity }
+      end
+    else
+      voter_id = params[:voter_id].to_i
+
+      params.each do |key, preference_value|
+        if /preference_(\d+)/.match(key)
+          item_id = $1.to_i
+          preference = preference_value.to_sym
+
+          proposal = Proposal.find_by(poll_id: @poll.id, item_id: item_id)
+
+          if preference != :none
+            if proposal.nil?
+              puts "Cannot find proposal with poll_id #{@poll.id} and item_id #{item_id}. Creating one."
+
+              proposal = Proposal.new({
+                poll_id: @poll.id,
+                item_id: item_id
+              })
+              proposal.save!
+            end
+
+            vote = Vote.find_by(voter_id: voter_id, proposal_id: proposal.id)
+
+            if vote.nil?
+              vote = Vote.new({
+                voter_id: voter_id,
+                proposal_id: proposal.id,
+                preference: preference
+              })
+
+              vote.save!
+            else
+              vote.update!({
+                voter_id: voter_id,
+                proposal_id: proposal.id,
+                preference: preference
+              })
+            end
+          else
+            # No preference -> delete vote if it exists
+            vote = Vote.find_by(voter_id: voter_id, proposal_id: proposal.id)
+
+            if !vote.nil?
+              vote.destroy
+            end
+          end
+        end
+      end
+
+      respond_to do |format|
+        format.html { redirect_to polls_url, notice: 'Erfolgreich abgestimmt.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # POST /polls
@@ -79,7 +151,6 @@ class PollsController < ApplicationController
     def poll_params
       params.require(:poll).permit(:name, :description, :status, :started_at, :concluded_at)
     end
-
 
     # TODO: Should prob. be inside a service / helper of some kind?
     def get_votes_for_poll(poll)

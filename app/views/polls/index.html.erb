@@ -10,7 +10,7 @@
       <!-- <th>Status</th>
       <th>Started at</th>
       <th>Concluded at</th> -->
-      <th colspan="5"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -21,11 +21,11 @@
         <td><%= poll.description %></td>
         <!-- <td><%= poll.status %></td>
         <td><%= poll.started_at %></td>
-        <td><%= poll.concluded_at %></td> -->
-        <td><%= link_to 'Anzeigen', poll %></td>
+        <td><%= poll.concluded_at %></td>
+        <<td><%= link_to 'Anzeigen', poll %></td>-->
         <td><%= link_to 'Ändern', edit_poll_path(poll) %></td>
         <td><%= link_to 'Löschen', poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Abstimmen (TODO)', poll %></td>
+        <td><%= link_to 'Abstimmen', votes_polls_path(poll) %></td>
         <td><%= link_to 'Ergebnisse', results_polls_path(poll) %></td>
       </tr>
     <% end %>
