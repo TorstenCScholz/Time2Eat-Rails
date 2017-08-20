@@ -83,7 +83,7 @@ class PollsController < ApplicationController
             end
           else
             # No preference -> delete vote if it exists
-            if !proposal.id.nil?
+            if !proposal.nil?
               vote = Vote.find_by(voter_id: voter_id, proposal_id: proposal.id)
 
               if !vote.nil?
