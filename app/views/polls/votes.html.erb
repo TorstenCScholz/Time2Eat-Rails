@@ -23,26 +23,34 @@
           <td>
             <div class="field">
               <!-- TODO: This is so super bad code style. But I don't know what the "rails way" would be like -->
-              <%= form.radio_button("preference_#{item.id}".to_sym, :very_positive, id: "preference_very_positive_#{item.id}".to_sym) %>
-              <label for="<%= "preference_very_positive_#{item.id}" %>"><%= translate_preference(:very_positive) %></label>
+              <div class="chip">
+                <%= form.radio_button("preference_#{item.id}".to_sym, :very_positive, id: "preference_very_positive_#{item.id}".to_sym) %>
+                <label class="preference-option" for="<%= "preference_very_positive_#{item.id}" %>"><%= translate_preference(:very_positive) %></label>
+              </div>
               
-              <%= form.radio_button("preference_#{item.id}".to_sym, :positive, id: "preference_positive_#{item.id}".to_sym) %>
-              <label for="<%= "preference_positive_#{item.id}" %>"><%= translate_preference(:positive) %></label>
+              <div class="chip">
+                <%= form.radio_button("preference_#{item.id}".to_sym, :positive, id: "preference_positive_#{item.id}".to_sym) %>
+                <label class="preference-option" for="<%= "preference_positive_#{item.id}" %>"><%= translate_preference(:positive) %></label>
+              </div>
               
-              <%= form.radio_button("preference_#{item.id}".to_sym, :neutral, id: "preference_neutral_#{item.id}".to_sym) %>
-              <label for="<%= "preference_neutral_#{item.id}" %>"><%= translate_preference(:neutral) %></label>
+              <div class="chip">
+                <%= form.radio_button("preference_#{item.id}".to_sym, :neutral, id: "preference_neutral_#{item.id}".to_sym) %>
+                <label class="preference-option" for="<%= "preference_neutral_#{item.id}" %>"><%= translate_preference(:neutral) %></label>
+              </div>
               
-              <%= form.radio_button("preference_#{item.id}".to_sym, :negative, id: "preference_negative_#{item.id}".to_sym) %>
-              <label for="<%= "preference_negative_#{item.id}" %>"><%= translate_preference(:negative) %></label>
+              <div class="chip">
+                <%= form.radio_button("preference_#{item.id}".to_sym, :negative, id: "preference_negative_#{item.id}".to_sym) %>
+                <label class="preference-option" for="<%= "preference_negative_#{item.id}" %>"><%= translate_preference(:negative) %></label>
+              </div>
               
-              <%= form.radio_button("preference_#{item.id}".to_sym, :very_negative, id: "preference_very_negative_#{item.id}".to_sym) %>
-              <label for="<%= "preference_very_negative_#{item.id}" %>"><%= translate_preference(:very_negative) %></label>
+              <div class="chip">
+                <%= form.radio_button("preference_#{item.id}".to_sym, :very_negative, id: "preference_very_negative_#{item.id}".to_sym) %>
+                <label class="preference-option" for="<%= "preference_very_negative_#{item.id}" %>"><%= translate_preference(:very_negative) %></label>
+              </div>
 
               <!-- TODO: Maybe use toggleable buttons instead? -->
-              <span style="background: purple">
-                <%= form.radio_button("preference_#{item.id}".to_sym, :none, id: "preference_none_#{item.id}".to_sym, checked: true) %>
-                <label for="<%= "preference_none_#{item.id}" %>">Enthalten</label>
-              </span>
+              <%= form.radio_button("preference_#{item.id}".to_sym, :none, id: "preference_none_#{item.id}".to_sym, checked: true) %>
+              <label for="<%= "preference_none_#{item.id}" %>">Enthalten</label>
           </div>
           </td>
         </tr>
