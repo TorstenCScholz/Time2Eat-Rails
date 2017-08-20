@@ -39,8 +39,6 @@ class PollsController < ApplicationController
   # POST /polls/1/votes
   def votes!
     if params[:voter_id].nil? or params[:voter_id] == ''
-      puts "VOTER EMPTY LOL"
-
       respond_to do |format|
         format.html { redirect_to votes_polls_path, notice: 'Wähler auswählen!' }
         format.json { render status: :unprocessable_entity }
@@ -85,10 +83,12 @@ class PollsController < ApplicationController
             end
           else
             # No preference -> delete vote if it exists
-            vote = Vote.find_by(voter_id: voter_id, proposal_id: proposal.id)
+            if !proposal.id.nil?
+              vote = Vote.find_by(voter_id: voter_id, proposal_id: proposal.id)
 
-            if !vote.nil?
-              vote.destroy
+              if !vote.nil?
+                vote.destroy
+              end
             end
           end
         end
