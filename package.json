@@ -1,5 +1,8 @@
 {
   "name": "time2eat",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "raphael": "^2.2.7",
+    "wheelnav": "^1.7.1"
+  }
 }

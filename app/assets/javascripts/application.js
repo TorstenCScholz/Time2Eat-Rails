@@ -15,6 +15,8 @@
 //= require jquery
 //= require turbolinks
 //= require materialize-sprockets
+//= require raphael/raphael.min.js
+//= require wheelnav/js/dist/wheelnav.min.js
 
 $(document).ready(function() {
     $('select').material_select();
